@@ -23,13 +23,15 @@ export default async function Home({
   const sample = response.value;
 
   return (
-    <main className="h-[100vh] flex justify-center bg-gray-100 items-center flex-col text-black">
-      <div className="flex justify-center items-center grow space-y-4 flex-col">
-        <h1 className="text-5xl mb-4">
-          {sample.name} - {sample.id}
-        </h1>
-        <NavigateBackButton />
-      </div>
-    </main>
+    <div className="flex h-screen bg-gray-100 text-black">
+      <main className="flex-1 flex justify-center items-center flex-col">
+        <div className="flex justify-center items-center grow space-y-4 flex-col">
+          <h1 className="text-5xl mb-4">
+            {sample.name} - {sample.id}
+          </h1>
+          <NavigateBackButton />
+        </div>
+      </main>
+    </div>
   );
 }
