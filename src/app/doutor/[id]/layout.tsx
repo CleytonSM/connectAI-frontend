@@ -2,7 +2,6 @@
 import Sidebar from "@/presentation/components/Sidebar";
 import { PagesEnum } from "@/presentation/enums/PagesEnum";
 import { createPath } from "@/presentation/utils/createPath";
-import { Calendar, FileCheck, FileWarning, FileText } from "lucide-react";
 import React from "react";
 
 export default function DoctorLayout({
@@ -17,22 +16,22 @@ export default function DoctorLayout({
     {
       label: "Agenda",
       path: createPath(PagesEnum.DOCTOR_SCHEDULE, { id }),
-      icon: Calendar,
+      icon: "Calendar",
     },
     {
       label: "Exames",
       path: createPath(PagesEnum.DOCTOR_EXAMS, { id }),
-      icon: FileCheck,
+      icon: "FileCheck",
     },
     {
       label: "Solicitações",
       path: createPath(PagesEnum.DOCTOR_SOLICITATIONS, { id }),
-      icon: FileWarning,
+      icon: "FileWarning",
     },
     {
       label: "Auditoria",
       path: createPath(PagesEnum.DOCTOR_AUDIT, { id }),
-      icon: FileText,
+      icon: "FileText",
     },
   ];
 

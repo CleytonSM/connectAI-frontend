@@ -34,7 +34,7 @@ export const useLoginForm = () => {
       const userData = JSON.parse(localStorage.getItem("user-data") || "{}");
       if (userData.label === "DOCTOR") {
         router.push(createPath(PagesEnum.DOCTOR_SCHEDULE, { id: userData.id }));
-      } else if (userData.label === "PATIENTE") {
+      } else if (userData.label === "PATIENT") {
         router.push(
           createPath(PagesEnum.PATIENT_SCHEDULE, { id: userData.id }),
         );
