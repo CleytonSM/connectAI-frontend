@@ -1,7 +1,7 @@
 import Sidebar from "@/presentation/components/Sidebar";
 import { PagesEnum } from "@/presentation/enums/PagesEnum";
 import { createPath } from "@/presentation/utils/createPath";
-import { Calendar, FileCheck, FileWarning, FileText } from "lucide-react";
+import { Calendar, FileCheck } from "lucide-react";
 import React from "react";
 
 export default function DoctorLayout({
@@ -9,17 +9,18 @@ export default function DoctorLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = React.use(params);
   const menuItems = [
     {
       label: "Agenda",
-      path: createPath(PagesEnum.PATIENT_SCHEDULE, { id: params.id }),
+      path: createPath(PagesEnum.PATIENT_SCHEDULE, { id }),
       icon: Calendar,
     },
     {
       label: "Historico",
-      path: createPath(PagesEnum.PATIENT_HISTORY, { id: params.id }),
+      path: createPath(PagesEnum.PATIENT_HISTORY, { id }),
       icon: FileCheck,
     },
   ];

@@ -1,4 +1,5 @@
 import React from "react";
+import { X } from "lucide-react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -28,7 +29,7 @@ export const Modal: React.FC<ModalProps> = ({
                 className="btn btn-sm btn-circle btn-ghost"
                 aria-label="Fechar"
               >
-                ×
+                <X size={20} />
               </button>
             </form>
           </div>

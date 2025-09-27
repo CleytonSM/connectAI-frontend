@@ -1,3 +1,4 @@
+"use client";
 import Sidebar from "@/presentation/components/Sidebar";
 import { PagesEnum } from "@/presentation/enums/PagesEnum";
 import { createPath } from "@/presentation/utils/createPath";
@@ -9,27 +10,28 @@ export default function DoctorLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = React.use(params);
   const menuItems = [
     {
       label: "Agenda",
-      path: createPath(PagesEnum.DOCTOR_SCHEDULE, { id: params.id }),
+      path: createPath(PagesEnum.DOCTOR_SCHEDULE, { id }),
       icon: Calendar,
     },
     {
       label: "Exames",
-      path: createPath(PagesEnum.DOCTOR_EXAMS, { id: params.id }),
+      path: createPath(PagesEnum.DOCTOR_EXAMS, { id }),
       icon: FileCheck,
     },
     {
       label: "Solicitações",
-      path: createPath(PagesEnum.DOCTOR_SOLICITATIONS, { id: params.id }),
+      path: createPath(PagesEnum.DOCTOR_SOLICITATIONS, { id }),
       icon: FileWarning,
     },
     {
       label: "Auditoria",
-      path: createPath(PagesEnum.DOCTOR_AUDIT, { id: params.id }),
+      path: createPath(PagesEnum.DOCTOR_AUDIT, { id }),
       icon: FileText,
     },
   ];
