@@ -1,0 +1,9 @@
+export type IEnvironmentServiceKey =
+  | "NEXT_PUBLIC_APP_URL"
+  | "NEXT_PUBLIC_API_URL"
+  | "NEXT_PUBLIC_COOKIE_NAME"
+  | "NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY";
+
+export interface IEnvironmentService {
+  get: (name: IEnvironmentServiceKey) => string;
+}
