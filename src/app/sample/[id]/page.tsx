@@ -39,7 +39,6 @@ export default async function Home({
 
   return (
     <div className="flex h-screen bg-gray-100 text-black">
-      <Sidebar />
       <main className="flex-1 flex justify-center items-center flex-col">
         <div className="flex justify-center items-center grow space-y-4 flex-col w-full max-w-xl">
           <h1 className="text-5xl mb-4">
