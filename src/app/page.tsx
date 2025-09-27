@@ -12,7 +12,7 @@ export default async function Home() {
           className="text-gray-contrast bg-secondary  py-1 px-4 rounded-md"
           href={"/sample/1"}
         >
-         
+         Go to sample page
         </Link>
       </div>
     </main>
