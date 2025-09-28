@@ -9,7 +9,7 @@ interface IChatMessageProps {
 export const ChatMessage = ({ message }: IChatMessageProps) => {
   return (
     <div
-      className={clsx("flex items-start gap-3 max-w-3xl", {
+      className={clsx("flex items-start gap-3", {
         "items-end flex-row-reverse justify-start": message.type === "user",
       })}
     >
