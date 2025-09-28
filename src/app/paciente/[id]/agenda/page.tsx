@@ -2,11 +2,12 @@ import { Calendar } from "lucide-react";
 import { ScheduleAppointmentChat } from "@/presentation/components/ScheduleAppointmentChat";
 import { PatientAgenda } from "@/presentation/components/partials/PatientAgenda";
 
-export default function PatientAgendaPage({
+export default async function PatientAgendaPage({
   params,
 }: {
-  params: { id: string };
+  params?: Promise<{ id: string }>;
 }) {
+  const resolvedParams = (await params) ?? { id: "" };
   return (
     <section className="space-y-6 mt-8">
       <div className="space-y-1">
@@ -22,7 +23,7 @@ export default function PatientAgendaPage({
 
       <div>
         <h2 className="text-xl font-semibold mb-2">Próximos agendamentos</h2>
-        <PatientAgenda patientId={params?.id} />
+        <PatientAgenda patientId={resolvedParams.id} />
       </div>
 
       <ScheduleAppointmentChat />

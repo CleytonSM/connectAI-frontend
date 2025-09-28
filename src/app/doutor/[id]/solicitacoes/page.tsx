@@ -2,11 +2,7 @@ import React from "react";
 import { FileText } from "lucide-react";
 import { DocumentValidationChat } from "@/presentation/components/DocumentValidationChat";
 
-export default function DoctorRequestsPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default function DoctorRequestsPage() {
   return (
     <main className="p-8">
       <div className="flex items-center mb-4">

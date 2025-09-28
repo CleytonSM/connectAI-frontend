@@ -1,11 +1,12 @@
 import { History } from "lucide-react";
 import { PatientHistory } from "@/presentation/components/partials/PatientHistory";
 
-export default function PatientHistoryPage({
+export default async function PatientHistoryPage({
   params,
 }: {
-  params: { id: string };
+  params?: Promise<{ id: string }>;
 }) {
+  const resolvedParams = (await params) ?? { id: "" };
   return (
     <section className="space-y-6 mt-8">
       <div className="space-y-1">
@@ -16,7 +17,7 @@ export default function PatientHistoryPage({
         <p>Aqui você pode consultar todos os seus agendamentos.</p>
       </div>
 
-      <PatientHistory patientId={params?.id} />
+      <PatientHistory patientId={resolvedParams.id} />
     </section>
   );
 }
