@@ -1,22 +1,29 @@
-import type { DoctorVM } from "@/domain/viewmodels/DoctorVM";
+import type { IChatMessage } from "@/presentation/@types/ChatMessage";
+import { useDoctorsBySpecialty } from "@/presentation/hooks/useDoctorsBySpecialty";
 import type { IScheduleAppointmentSchema } from "@/presentation/schemas/scheduleAppointmentSchema";
-import { type Control, Controller } from "react-hook-form";
+import { type Control, Controller, useWatch } from "react-hook-form";
 
-type MessageHandler = (msg: string) => void;
+type MessageHandler = (msg: Partial<IChatMessage>) => void;
 
 interface IDoctorSelectorProps {
   control: Control<IScheduleAppointmentSchema>;
-  doctors: DoctorVM[];
   messageHandler: MessageHandler;
   nextStep?: () => void;
 }
 
 export const DoctorSelector = ({
   control,
-  doctors,
   messageHandler,
   nextStep,
 }: IDoctorSelectorProps) => {
+  const specialty = useWatch({ control, name: "specialty" });
+
+  const { doctors } = useDoctorsBySpecialty({ specialty });
+
+  if (!doctors) {
+    return <div>error feedbback</div>;
+  }
+
   return (
     <Controller
       name="doctorId"
@@ -30,7 +37,7 @@ export const DoctorSelector = ({
               className="border rounded-lg p-3 cursor-pointer hover:shadow"
               onClick={() => {
                 field.onChange(doctor.id);
-                messageHandler(`Médico escolhido: ${doctor.name}`);
+                messageHandler({ content: `Médico escolhido: ${doctor.name}` });
                 nextStep?.();
               }}
             >
