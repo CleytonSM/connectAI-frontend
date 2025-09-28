@@ -1,4 +1,3 @@
-import type { IPageParams } from "@/presentation/@types/IPageParams";
 import { createGetSampleQuery } from "@/factories/createGetSampleQuery";
 import { NavigateBackButton } from "@/presentation/components/NavigateBackButton";
 import Sidebar from "@/presentation/components/Sidebar";
@@ -12,8 +11,11 @@ async function getSample(id: number) {
 
 export default async function Home({
   params,
-}: IPageParams<undefined, { id: string }>) {
-  const response = await getSample(Number(params?.id));
+}: {
+  params?: Promise<{ id: string }>;
+}) {
+  const resolvedParams = (await params) ?? { id: "" };
+  const response = await getSample(Number(resolvedParams.id));
   if (response.isLeft()) {
     return (
       <div>
