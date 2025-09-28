@@ -30,9 +30,9 @@ export default function DoctorLayout({
   ];
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex h-screen">
       <Sidebar menuItems={menuItems} />
-      <div className="flex-1 p-4 md:p-8">{children}</div>
+      <div className="flex-1 p-4 md:p-8 overflow-auto">{children}</div>
     </div>
   );
 }
