@@ -10,13 +10,15 @@ import { AvailabilityResponse } from "../models/responses/AvailabilityResponse";
 import { AvailabilityVM } from "@/domain/viewmodels/AvailabilityVM";
 import { PatientAppointmentResponse } from "../models/responses/PatientAppoitmentResponse";
 import { PatientAppointmentVM } from "@/domain/viewmodels/PatientAppoitmentVM";
+import { DoctorConsultsResponse } from "../models/responses/DoctorConsultsResponse";
+import { DoctorConsultsVM } from "@/domain/viewmodels/DoctorConsultsVM";
 
 export const mapper = createMapper({
   strategyInitializer: classes(),
 });
 
 createMap(mapper, SampleResponse, SampleViewModel);
-
+createMap(mapper, DoctorConsultsResponse, DoctorConsultsVM);
 createMap(mapper, DoctorResponse, DoctorVM);
 
 createMap(mapper, AvailabilityResponse, AvailabilityVM);
