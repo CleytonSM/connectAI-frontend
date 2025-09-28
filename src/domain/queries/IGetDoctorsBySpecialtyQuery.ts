@@ -5,6 +5,7 @@ import type { DoctorVM } from "../viewmodels/DoctorVM";
 
 export interface IGetDoctorsBySpecialtyQueryExecuteParams {
   specialty: SpecialtiesEnum;
+  patientId: number;
 }
 
 export interface IGetDoctorsBySpecialtyQuery

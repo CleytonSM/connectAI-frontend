@@ -18,8 +18,13 @@ export const useDoctorsBySpecialty = ({
   useEffect(() => {
     if (!specialty) return;
 
+    const userData = JSON.parse(localStorage.getItem("user-data") || "{}");
+
     startTransition(async () => {
-      const response = await getDoctorOptions.execute({ specialty });
+      const response = await getDoctorOptions.execute({
+        specialty,
+        patientId: Number.parseInt(userData.id),
+      });
 
       if (response.isLeft()) {
         setDoctors(null);

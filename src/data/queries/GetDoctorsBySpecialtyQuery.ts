@@ -14,7 +14,9 @@ export class GetDoctorsBySpecialtyQuery implements IGetDoctorsBySpecialtyQuery {
     params: IGetDoctorsBySpecialtyQueryExecuteParams,
   ): Promise<TEither<undefined, DoctorVM[]>> {
     try {
-      const response = await client(`/consults/doctors/${params.specialty}`);
+      const response = await client(
+        `/consults/doctors/${params.specialty}/${params.patientId}`,
+      );
 
       const { data } = await parseResponse<DoctorResponse[]>(response);
 
