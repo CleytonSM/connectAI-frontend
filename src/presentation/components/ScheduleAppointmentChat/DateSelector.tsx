@@ -4,6 +4,7 @@ import Button from "../Button";
 import type { IChatMessage } from "@/presentation/@types/ChatMessage";
 import { useDoctorAvailabilityOptions } from "@/presentation/hooks/useDoctorAvailabilityOptions";
 import { ErrorFeedback } from "../ErrorFeedback";
+import clsx from "clsx";
 
 type MessageHandler = (msg: Partial<IChatMessage>) => void;
 
@@ -45,7 +46,9 @@ export const DateSelector = ({
                   });
                   nextStep?.();
                 }}
-                className="btn-soft"
+                className={clsx("btn-soft text-xs", {
+                  "btn-success": field.value === option.value,
+                })}
               >
                 {option.label}
               </Button>

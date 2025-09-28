@@ -3,6 +3,7 @@ import { useDoctorsBySpecialty } from "@/presentation/hooks/useDoctorsBySpecialt
 import type { IScheduleAppointmentSchema } from "@/presentation/schemas/scheduleAppointmentSchema";
 import { type Control, Controller, useWatch } from "react-hook-form";
 import { ErrorFeedback } from "../ErrorFeedback";
+import clsx from "clsx";
 
 type MessageHandler = (msg: Partial<IChatMessage>) => void;
 
@@ -37,7 +38,12 @@ export const DoctorSelector = ({
             <button
               key={doctor.id}
               type="button"
-              className="border rounded-lg p-3 cursor-pointer hover:shadow"
+              className={clsx(
+                "border rounded-lg p-3 cursor-pointer hover:shadow",
+                {
+                  "bg-green-200 text-green-600": field.value === doctor.id,
+                },
+              )}
               onClick={() => {
                 field.onChange(doctor.id);
                 messageHandler({ content: `Médico escolhido: ${doctor.name}` });

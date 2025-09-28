@@ -3,8 +3,10 @@ import type { Options } from "@/presentation/@types/Option";
 import type { IScheduleAppointmentSchema } from "@/presentation/schemas/scheduleAppointmentSchema";
 import { type Control, Controller } from "react-hook-form";
 import Button from "../Button";
+import type { IChatMessage } from "@/presentation/@types/ChatMessage";
+import clsx from "clsx";
 
-type MessageHandler = (msg: string) => void;
+type MessageHandler = (msg: Partial<IChatMessage>) => void;
 
 interface ISpecialtySelectorProps {
   control: Control<IScheduleAppointmentSchema>;
@@ -24,17 +26,21 @@ export const SpecialtySelector = ({
       name="specialty"
       control={control}
       render={({ field }) => (
-        <div className="flex items-center gap-2 mt-2 flex-wrap">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
           {specialtyOptions.map((specialty) => (
             <Button
               key={specialty.value}
               type="button"
               onClick={() => {
                 field.onChange(specialty.value);
-                messageHandler(`Especialidade escolhida: ${specialty.label}`);
+                messageHandler({
+                  content: `Especialidade escolhida: ${specialty.label}`,
+                });
                 nextStep?.();
               }}
-              className="btn-soft"
+              className={clsx("btn-soft text-xs", {
+                "btn-success": field.value === specialty.value,
+              })}
             >
               {specialty.label}
             </Button>
