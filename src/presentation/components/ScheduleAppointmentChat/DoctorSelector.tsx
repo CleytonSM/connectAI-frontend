@@ -2,6 +2,7 @@ import type { IChatMessage } from "@/presentation/@types/ChatMessage";
 import { useDoctorsBySpecialty } from "@/presentation/hooks/useDoctorsBySpecialty";
 import type { IScheduleAppointmentSchema } from "@/presentation/schemas/scheduleAppointmentSchema";
 import { type Control, Controller, useWatch } from "react-hook-form";
+import { ErrorFeedback } from "../ErrorFeedback";
 
 type MessageHandler = (msg: Partial<IChatMessage>) => void;
 
@@ -21,7 +22,9 @@ export const DoctorSelector = ({
   const { doctors } = useDoctorsBySpecialty({ specialty });
 
   if (!doctors) {
-    return <div>error feedbback</div>;
+    return (
+      <ErrorFeedback message="Ocorreu um erro ao carregar as opções de médico" />
+    );
   }
 
   return (
