@@ -1,5 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "daisyui" {
+  /* biome-ignore lint/correctness/noUnknownProperty: <daisyUI property> */
+  themes: light --default;
+}
 
 @custom-variant dark (&:is(.dark *));
 

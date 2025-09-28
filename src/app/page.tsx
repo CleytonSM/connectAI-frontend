@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function Home() {
   return (
@@ -14,6 +15,20 @@ export default async function Home() {
         >
          Go to sample page
         </Link>
+        {/* Card DaisyUI */}
+        <div className="card w-96 bg-base-100 shadow-xl mt-8">
+          <figure>
+            {/* Usando Next.js Image para evitar erro */}
+            <Image src="/globe.svg" alt="Globe" width={96} height={96} className="w-24 h-24" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">DaisyUI Card</h2>
+            <p>Este é um exemplo de card usando DaisyUI.</p>
+            <div className="card-actions justify-end">
+              <button className="btn btn-primary" type="button">Ação</button>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );
