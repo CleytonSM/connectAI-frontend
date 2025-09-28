@@ -2,13 +2,13 @@ import { Calendar } from "lucide-react";
 import { ScheduleAppointmentChat } from "@/presentation/components/ScheduleAppointmentChat";
 import { PatientAgenda } from "@/presentation/components/partials/PatientAgenda";
 
-export default function DoctorAgendaPage({
+export default function PatientAgendaPage({
   params,
 }: {
   params: { id: string };
 }) {
   return (
-    <main className="space-y-6 mt-8">
+    <section className="space-y-6 mt-8">
       <div className="space-y-1">
         <h1 className="text-2xl font-bold flex items-center gap-1">
           <Calendar className="size-8 shrink-0" />
@@ -26,6 +26,6 @@ export default function DoctorAgendaPage({
       </div>
 
       <ScheduleAppointmentChat />
-    </main>
+    </section>
   );
 }
