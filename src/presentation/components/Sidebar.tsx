@@ -75,7 +75,7 @@ export default function Sidebar({ menuItems, basePath }: SidebarProps) {
       <aside className="hidden md:flex h-screen w-64 bg-white border-r border-gray-200 flex-col shadow-sm">
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-center h-20 border-b border-gray-200">
-            <span className="text-xl font-bold text-gray-800">VitalLink</span>
+            <span className="text-xl font-bold text-gray-800">VitaLink</span>
             <Image
               src="/logo.png"
               alt="Logo"
