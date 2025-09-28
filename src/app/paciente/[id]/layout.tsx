@@ -13,6 +13,11 @@ export default function DoctorLayout({
   const { id } = React.use(params);
   const menuItems = [
     {
+      label: "Orion",
+      path: createPath(PagesEnum.DOCTOR_ORION, { id }),
+      icon: "Bot",
+    },
+    {
       label: "Agenda",
       path: createPath(PagesEnum.PATIENT_SCHEDULE, { id }),
       icon: "Calendar",
@@ -27,7 +32,7 @@ export default function DoctorLayout({
   return (
     <div className="flex min-h-screen">
       <Sidebar menuItems={menuItems} />
-      <div className="flex-1 p-8">{children}</div>
+      <div className="flex-1 p-4 md:p-8">{children}</div>
     </div>
   );
 }
