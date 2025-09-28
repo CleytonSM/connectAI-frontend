@@ -28,6 +28,6 @@ export const StepAppointments = async () => {
   return (
     <div className="w-full">
       <AppointmentList list={list} />
-    </div>
+    </div> 
   );
 };
