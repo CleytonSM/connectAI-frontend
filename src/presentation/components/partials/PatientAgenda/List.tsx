@@ -14,7 +14,7 @@ export const List = ({ appointments }: IListProps) => {
           className="list-row flex items-start justify-between"
         >
           <div>
-            <p>{appointment.consultDate}</p>
+            <p className="font-semibold">{appointment.consultDate}</p>
             <p className="text-xs uppercase font-semibold opacity-60">
               {appointment.doctor.name}
             </p>
