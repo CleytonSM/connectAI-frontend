@@ -1,7 +1,7 @@
+import type { SpecialtiesEnum } from "@/domain/enums/SpecialtiesEnum";
 import { AutoMap } from "@automapper/classes";
-import type { SpecialtiesEnum } from "../enums/SpecialtiesEnum";
 
-export class DoctorVM {
+export class DoctorResponse {
   @AutoMap()
   id!: number;
 
