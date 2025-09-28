@@ -107,15 +107,25 @@ export const ScheduleAppointmentChat = () => {
         ))}
         <div ref={messagesEndRef} />
         {isValid && (
-          <div className="w-full flex flex-col items-center justify-center py-4">
-            <Button
-              type="submit"
-              className="btn-soft btn-success rounded-lg"
-              disabled={isSubmitting}
-            >
-              Confirmar Agendamento
-            </Button>
-          </div>
+          <ChatMessage
+            message={{
+              id: "submit",
+              type: "bot",
+              content:
+                "Clique em 'Confirmar Agendamento'. Sua lista de agendamentos será atualizada",
+              component: (
+                <div className="w-full flex flex-col items-center justify-center py-4">
+                  <Button
+                    type="submit"
+                    className="rounded-lg"
+                    disabled={isSubmitting}
+                  >
+                    Confirmar Agendamento
+                  </Button>
+                </div>
+              ),
+            }}
+          />
         )}
       </div>
     </form>
