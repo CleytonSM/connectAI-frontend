@@ -50,10 +50,11 @@ export const DoctorSelector = ({
                 nextStep?.();
               }}
             >
-              <div className="flex justify-between">
-                <div>
-                  <h3 className="font-medium">{doctor.name}</h3>
-                </div>
+              <div className="flex items-center gap-2">
+                <h3 className="font-medium">{doctor.name}</h3>
+                <span className="bg-green-500 text-white size-6 text-xs rounded-sm w-fit text-center p-1 flex items-center justify-center font-semibold">
+                  {doctor.probability.toFixed(1)}%
+                </span>
               </div>
             </button>
           ))}

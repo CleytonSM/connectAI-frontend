@@ -31,4 +31,7 @@ export class DoctorResponse {
 
   @AutoMap()
   active!: boolean;
+
+  @AutoMap()
+  probability!: number;
 }
