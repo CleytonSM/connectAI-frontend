@@ -1,8 +1,11 @@
 import type { IScheduleAppointmentSchema } from "@/presentation/schemas/scheduleAppointmentSchema";
-import { type Control, Controller } from "react-hook-form";
+import { type Control, Controller, useWatch } from "react-hook-form";
 import Button from "../Button";
+import type { IChatMessage } from "@/presentation/@types/ChatMessage";
+import { useDoctorAvailabilityOptions } from "@/presentation/hooks/useDoctorAvailabilityOptions";
+import { ErrorFeedback } from "../ErrorFeedback";
 
-type MessageHandler = (msg: string) => void;
+type MessageHandler = (msg: Partial<IChatMessage>) => void;
 
 interface IDateSelectorProps {
   control: Control<IScheduleAppointmentSchema>;
@@ -15,12 +18,14 @@ export const DateSelector = ({
   messageHandler,
   nextStep,
 }: IDateSelectorProps) => {
-  const hoje = new Date();
-  const proximosDias = Array.from({ length: 7 }, (_, i) => {
-    const d = new Date(hoje);
-    d.setDate(hoje.getDate() + i + 1);
-    return d;
-  });
+  const doctorId = useWatch({ control, name: "doctorId" });
+  const { availabilityOptions } = useDoctorAvailabilityOptions({ doctorId });
+
+  if (!availabilityOptions) {
+    return (
+      <ErrorFeedback message="Ocorreu um erro ao carregar datas disponíveis" />
+    );
+  }
 
   return (
     <Controller
@@ -28,26 +33,21 @@ export const DateSelector = ({
       control={control}
       render={({ field }) => (
         <div className="flex items-center gap-2 mt-2 flex-wrap">
-          {proximosDias.map((d) => {
-            const iso = d.toISOString().split("T")[0];
+          {availabilityOptions.map((option) => {
             return (
               <Button
-                key={iso}
+                key={option.value}
                 type="button"
                 onClick={() => {
-                  field.onChange(iso);
-                  messageHandler(
-                    `Dia escolhido: ${d.toLocaleDateString("pt-BR")}`,
-                  );
+                  field.onChange(option.value);
+                  messageHandler({
+                    content: `Dia escolhido: ${option.label}`,
+                  });
                   nextStep?.();
                 }}
                 className="btn-soft"
               >
-                {d.toLocaleDateString("pt-BR", {
-                  weekday: "short",
-                  day: "2-digit",
-                  month: "2-digit",
-                })}
+                {option.label}
               </Button>
             );
           })}
