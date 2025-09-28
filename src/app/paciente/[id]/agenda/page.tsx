@@ -1,4 +1,4 @@
-import React from "react";
+import { ScheduleAppointmentChat } from "@/presentation/components/ScheduleAppointmentChat";
 
 export default function DoctorAgendaPage({
   params,
@@ -16,6 +16,8 @@ export default function DoctorAgendaPage({
           <p>Nenhum horário cadastrado.</p>
         </div>
       </div>
+
+      <ScheduleAppointmentChat />
     </main>
   );
 }
