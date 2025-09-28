@@ -6,6 +6,7 @@ import * as Icons from "lucide-react";
 import Button from "./Button";
 import { useAuth } from "../contexts/AuthContext";
 import { PagesEnum } from "../enums/PagesEnum";
+import { redirect, RedirectType } from "next/navigation";
 
 interface MenuItem {
   label: string;
@@ -35,7 +36,7 @@ export default function Sidebar({ menuItems, basePath }: SidebarProps) {
 
   const handleLogout = () => {
     logout();
-    window.location.href = PagesEnum.LOGIN;
+    redirect(PagesEnum.LOGIN, RedirectType.replace);
   };
 
   const renderMenuItems = (onClick?: () => void) => (

@@ -14,7 +14,7 @@ export default function DoctorLayout({
   const menuItems = [
     {
       label: "Orion",
-      path: createPath(PagesEnum.DOCTOR_ORION, { id }),
+      path: createPath(PagesEnum.PATIENT_ORION, { id }),
       icon: "Bot",
     },
     {

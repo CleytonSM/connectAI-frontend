@@ -3,7 +3,7 @@ import { type ILoginSchema, LoginSchema } from "../schemas/loginSchema";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { createUserLoginCommand } from "@/factories/createUserLoginCommand";
 import { useAuth } from "../contexts/AuthContext";
-import { useRouter } from "next/navigation";
+import { redirect, RedirectType } from "next/navigation";
 import { PagesEnum } from "../enums/PagesEnum";
 import { createPath } from "../utils/createPath";
 
@@ -11,7 +11,6 @@ const loginCommand = createUserLoginCommand();
 
 export const useLoginForm = () => {
   const { login } = useAuth();
-  const router = useRouter();
 
   const {
     register,
@@ -33,10 +32,14 @@ export const useLoginForm = () => {
       login(response.value);
       const userData = JSON.parse(localStorage.getItem("user-data") || "{}");
       if (userData.label === "DOCTOR") {
-        router.push(createPath(PagesEnum.DOCTOR_SCHEDULE, { id: userData.id }));
+        redirect(
+          createPath(PagesEnum.DOCTOR_ORION, { id: userData.id }),
+          RedirectType.replace,
+        );
       } else if (userData.label === "PATIENT") {
-        router.push(
-          createPath(PagesEnum.PATIENT_SCHEDULE, { id: userData.id }),
+        redirect(
+          createPath(PagesEnum.PATIENT_ORION, { id: userData.id }),
+          RedirectType.replace,
         );
       }
     }
