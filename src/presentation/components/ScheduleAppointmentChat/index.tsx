@@ -114,7 +114,7 @@ export const ScheduleAppointmentChat = () => {
               content:
                 "Clique em 'Confirmar Agendamento'. Sua lista de agendamentos será atualizada",
               component: (
-                <div className="w-full flex flex-col items-center justify-center py-4">
+                <div className="w-full flex flex-col py-4">
                   <Button
                     type="submit"
                     className="rounded-lg"

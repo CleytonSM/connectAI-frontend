@@ -31,4 +31,7 @@ export class DoctorVM {
 
   @AutoMap()
   active!: boolean;
+
+  @AutoMap()
+  probability!: number;
 }
