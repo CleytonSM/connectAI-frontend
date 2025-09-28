@@ -49,31 +49,21 @@ export default function DoctorAuditPage() {
   }, []);
 
   const handleAction = async (
-    hasHappened: boolean,
+    status: "approved" | "rejected",
     patientId: number,
     documentId: number,
   ) => {
-    if (loadingAction) return; // Evita múltiplas requisições
+    if (loadingAction) return;
 
     setLoadingAction(true);
     try {
-      const userData = localStorage.getItem("user-data");
-      const userId = userData ? JSON.parse(userData).id : null;
-
-      if (!userId) {
-        console.error("User ID not found in localStorage.");
-        alert("Erro: ID do usuário não encontrado.");
-        return;
-      }
-
       const response = await fetch(
-        `https://hackaton-api-production-a002.up.railway.app/api/consults/${documentId}?hasHappened=${hasHappened ? "true" : "false"}`,
+        `https://hackaton-api-production-a002.up.railway.app/api/documents/${documentId}/status?status=${status}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ patientId, doctorId: userId }),
         },
       );
 
@@ -92,7 +82,7 @@ export default function DoctorAuditPage() {
       console.error("Erro ao realizar a ação", error);
       alert("Erro ao realizar a ação.");
     } finally {
-      setLoadingAction(false); // Libera o botão após a requisição
+      setLoadingAction(false);
     }
   };
 
@@ -117,9 +107,11 @@ export default function DoctorAuditPage() {
             type="button"
             title="Autorizar"
             aria-label={`Autorizar solicitação de ${row.name}`}
-            onClick={() => handleAction(true, row.patient?.id || 0, row.id)}
+            onClick={() =>
+              handleAction("approved", row.patient?.id || 0, row.id)
+            }
             className="p-2 rounded-md bg-transparent hover:bg-gray-100"
-            disabled={loadingAction} // Desabilita o botão enquanto carrega
+            disabled={loadingAction}
           >
             <Check size={16} className="text-green-500" />
           </Button>
@@ -127,9 +119,11 @@ export default function DoctorAuditPage() {
             type="button"
             title="Negar"
             aria-label={`Negar solicitação de ${row.name}`}
-            onClick={() => handleAction(false, row.patient?.id || 0, row.id)}
+            onClick={() =>
+              handleAction("rejected", row.patient?.id || 0, row.id)
+            }
             className="p-2 rounded-md bg-transparent hover:bg-gray-100"
-            disabled={loadingAction} // Desabilita o botão enquanto carrega
+            disabled={loadingAction}
           >
             <X size={16} className="text-red-500" />
           </Button>
