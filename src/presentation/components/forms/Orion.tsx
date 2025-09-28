@@ -41,7 +41,10 @@ export const OrionChatbot = () => {
   }, [initializeChat]);
 
   return (
-    <div className="h-full flex flex-col items-center justify-center w-full">
+    <form
+      onSubmit={handleSubmit}
+      className="h-full flex flex-col items-center justify-center w-full"
+    >
       <div className="flex-1 w-full space-y-4 text-black h-full overflow-y-auto">
         {messages.map((message) => (
           <ChatMessage key={message.id} message={message} />
@@ -50,10 +53,7 @@ export const OrionChatbot = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className="w-full min-h-10 flex items-center justify-center"
-      >
+      <div className="w-full min-h-10 flex items-center justify-center">
         <div className="flex-1 flex items-center gap-2">
           <Controller
             name="message"
@@ -86,7 +86,7 @@ export const OrionChatbot = () => {
             <Send className="w-4 h-4" />
           </Button>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
